@@ -4,15 +4,23 @@
   "description": "Teste Técnico Squid ",
   "main": "index.js",
   "engines": {
-      "node": "9.4.0",
-      "npm": "5.6.0"
+    "node": "9.4.0",
+    "npm": "5.6.0"
   },
   "scripts": {
-    "start": "node app/index.js"
+    "start": "node app/index.js",
+    "server": "nodemon app/index.js",
+    "client": "npm run start --prefix app/client",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "author": "Mané Brasil",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.16.2"
+    "concurrently": "^3.5.1",
+    "dotenv": "^5.0.0",
+    "express": "^4.16.2",
+    "mongoose": "^5.0.7",
+    "request": "^2.83.0"
   }
 }
