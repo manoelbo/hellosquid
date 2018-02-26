@@ -8,7 +8,7 @@
       "npm": "5.6.0"
   },
   "scripts": {
-    "start": "node server/index.js"
+    "start": "node app/index.js"
   },
   "author": "Mané Brasil",
   "license": "ISC",
