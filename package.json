@@ -12,7 +12,7 @@
     "server": "nodemon app/index.js",
     "client": "npm run start --prefix app/client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix app/client -g && npm run build --prefix app/client -g"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix app/client && npm run build --prefix app/client"
   },
   "author": "Mané Brasil",
   "license": "ISC",
