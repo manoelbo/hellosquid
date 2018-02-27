@@ -15,17 +15,17 @@ class App extends Component {
     };
 
     componentDidMount() {
-        this.setIsLodingOn()
+        this.setIsLodingOn();
         HashTagsAPI.getAll().then(hashtags => {
-            this.setIsLodingOff()
+            this.setIsLodingOff();
             this.setState({
                 hashtags,
                 selectedHashtag: hashtags[0].hashtag
             });
 
-            this.setIsLodingOn()
+            this.setIsLodingOn();
             HashTagsAPI.searchOnInstagram(hashtags[0].hashtag).then(result => {
-                this.setIsLodingOff()
+                this.setIsLodingOff();
                 if (result) {
                     this.setState({ instagramMediaItens: result.data });
                 }
@@ -36,23 +36,23 @@ class App extends Component {
     setIsLodingOn() {
         this.setState({
             isLoading: true
-        })
+        });
     }
 
     setIsLodingOff() {
         this.setState({
             isLoading: false
-        })
+        });
     }
 
     updateSelectedHashTag(selectedHashtag) {
-        this.setIsLodingOn()
+        this.setIsLodingOn();
         this.setState({
             selectedHashtag
         });
 
         HashTagsAPI.searchOnInstagram(selectedHashtag).then(result => {
-            this.setIsLodingOff()
+            this.setIsLodingOff();
             if (result) {
                 this.setState({ instagramMediaItens: result.data });
             }
@@ -71,9 +71,9 @@ class App extends Component {
         this.setState({
             searchTerm: term
         });
-        this.setIsLodingOn()
+        this.setIsLodingOn();
         HashTagsAPI.searchOnInstagram(term).then(result => {
-            this.setIsLodingOff()
+            this.setIsLodingOff();
             if (result) {
                 this.setState({ searchResult: result.data });
             }
@@ -107,7 +107,7 @@ class App extends Component {
             searchTerm,
             instagramMediaItens,
             isLoading
-        } = this.state
+        } = this.state;
         return (
             <div>
                 <nav>
@@ -121,38 +121,46 @@ class App extends Component {
                     path="/"
                     render={() => (
                         <div className="container">
+                            {hashtags.length > 0 && (
+                                <div>
+                                    <HashTagList
+                                        hashtags={this.state.hashtags}
+                                        selectedHashtag={
+                                            this.state.selectedHashtag
+                                        }
+                                        updateSelectedHashTag={this.updateSelectedHashTag.bind(
+                                            this
+                                        )}
+                                        removeHashTag={this.removeHashTag.bind(
+                                            this
+                                        )}
+                                    />
 
-                            { hashtags.length > 0 &&
-                            <div>
-                                <HashTagList
-                                    hashtags={this.state.hashtags}
-                                    selectedHashtag={this.state.selectedHashtag}
-                                    updateSelectedHashTag={this.updateSelectedHashTag.bind(
-                                        this
+                                    {isLoading === true && (
+                                        <div className="progress">
+                                            <div className="indeterminate" />
+                                        </div>
                                     )}
-                                    removeHashTag={this.removeHashTag.bind(this)}
-                                />
+                                    <MediaList
+                                        instagramMediaItens={
+                                            this.state.instagramMediaItens
+                                        }
+                                    />
+                                </div>
+                            )}
 
-                                { isLoading === true &&
-                                    <div className="progress">
-                                        <div className="indeterminate"></div>
-                                    </div>
-                                }
-                                <MediaList
-                                    instagramMediaItens={
-                                        this.state.instagramMediaItens
-                                    }
-                                />
-                            </div>
-                            }
+                            {hashtags.length === 0 && (
+                                <h5>
+                                    {' '}
+                                    Nenhuma tag cadastrada, faça uma bucas para
+                                    adicionar uma nova tag{' '}
+                                </h5>
+                            )}
 
-                            { hashtags.length === 0 &&
-                                <h5> Nenhuma tag cadastrada, faça uma bucas para adicionar uma nova tag </h5>
-                            }
-
-                            { (instagramMediaItens.length === 0 && hashtags.length !== 0 ) &&
-                                <h5> Nenhum resultado com essa tag </h5>
-                            }
+                            {instagramMediaItens.length === 0 &&
+                                hashtags.length !== 0 && (
+                                    <h5> Nenhum resultado com essa tag </h5>
+                                )}
 
                             <Link
                                 to="/search"
@@ -177,18 +185,19 @@ class App extends Component {
                                 <div className="col s12">
                                     <input
                                         placeholder="busca"
-                                        value={this.state.searchTerm}
+                                        value={searchTerm}
                                         onChange={event =>
                                             this.searchOnChange(
                                                 event.target.value
                                             )
                                         }
                                     />
-                                    { isLoading === true &&
-                                        <div className="progress">
-                                            <div className="indeterminate"></div>
-                                        </div>
-                                    }
+                                    {isLoading === true &&
+                                        searchTerm.length > 2 && (
+                                            <div className="progress">
+                                                <div className="indeterminate" />
+                                            </div>
+                                        )}
                                     <MediaList
                                         instagramMediaItens={
                                             this.state.searchResult
@@ -197,9 +206,14 @@ class App extends Component {
                                 </div>
                             </div>
 
-                            { (searchResult.length === 0 && searchTerm.length > 2 )&&
-                                <h5> Nada encontrado, tente 'dog' ou 'natal' por exemplo </h5>
-                            }
+                            {searchResult.length === 0 &&
+                                searchTerm.length > 2 && (
+                                    <h5>
+                                        {' '}
+                                        Nada encontrado, tente 'dog' ou 'natal'
+                                        por exemplo{' '}
+                                    </h5>
+                                )}
 
                             <Link
                                 to="/"
