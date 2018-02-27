@@ -1,5 +1,5 @@
 // DB Shemas para hashtags
-'use strict'
+'use strict';
 
 var mongoose = require('mongoose');
 

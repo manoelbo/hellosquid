@@ -1,8 +1,8 @@
-'use strict'
+'use strict';
 
 const express = require('express');
 const apiRouter = express.Router();
-const bodyParser = require('body-parser')
+const bodyParser = require('body-parser');
 
 const ctrlHashtags = require('../controllers/hashtag');
 
