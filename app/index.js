@@ -11,6 +11,8 @@ app.get('/teste', (req, res) => {
     res.send({ hi: 'there' });
 });
 
+console.log(__dirname, 'dir');
+
 if (process.env.NODE_ENV === 'production') {
   // Express will serve up production assets
   // like our main.js file, or main.css file!
@@ -20,7 +22,7 @@ if (process.env.NODE_ENV === 'production') {
   // if it doesn't recognize the route
   const path = require('path');
   app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'app', 'client', 'build', 'index.html'));
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
   });
 }
 
