@@ -1,82 +1,31 @@
 # Hello Squid (teste técnico)
 
-[Create React App](https://github.com/facebookincubator/create-react-app)
+[Aplicação no Heroku!!!](https://hellosquid.herokuapp.com/)
 
-## TL;DR
+## LOCAL SETUP
 
-To get started developing right away:
+* colonar ou baixar esse repo.
+* instalar todas as dependências -> `npm install`
+* rodar os servidores  `npm run dev`
 
-* install all project dependencies with `npm install`
-* start the development server with `npm start`
+node/express vai rodar no port 5000
+react vai rodar no port 3000
 
-## What You're Getting
-```bash
-├── README.md - This file.
-├── package.json
-└── app
-    ├── api # Helpful images for your app. Use at your discretion.
-        └── controllers
-        └── models
-        └── routes
-        └── test
-    ├── index.css # Global styles. You probably won't need to change anything here.
-    └── index.js # You should not need to modify this file. It is used for DOM rendering only.
-```
+se vocês quiserem usar a versão estática do React é preciso dar build antes.
 
-Remember that good React design practice is to create new JS files for each component and use import/require statements to include them where they are needed.
+* ir até a pasta do react `cd app/client`
+* rodar o build `npm run build`
 
-## Backend Server
+## ENVIRONMENT VARIABLES
+Não publiquei nesse git o meu access token para consultar a API do Instagram.
+Para configurar é só:
+* criar um arquivo o nome .env na pasta root
+* adicionar INSTAGRAM_ACCESS_TOKEN=<SEUTOKEN>
 
-To simplify your development process, we've provided a backend server for you to develop against. The provided file [`BooksAPI.js`](src/BooksAPI.js) contains the methods you will need to perform necessary operations on the backend:
+## TESTES
 
-* [`getAll`](#getall)
-* [`update`](#update)
-* [`search`](#search)
+`npm run test-api` para testa a API (mocha + chai)
 
-### `getAll`
-
-Method Signature:
-
-```js
-getAll()
-```
-
-* Returns a Promise which resolves to a JSON object containing a collection of book objects.
-* This collection represents the books currently in the bookshelves in your app.
-
-### `update`
-
-Method Signature:
-
-```js
-update(book, shelf)
-```
-
-* book: `<Object>` containing at minimum an `id` attribute
-* shelf: `<String>` contains one of ["wantToRead", "currentlyReading", "read"]  
-* Returns a Promise which resolves to a JSON object containing the response data of the POST request
-
-### `search`
-
-Method Signature:
-
-```js
-search(query)
-```
-
-* query: `<String>`
-* Returns a Promise which resolves to a JSON object containing a collection of a maximum of 20 book objects.
-* These books do not know which shelf they are on. They are raw results only. You'll need to make sure that books have the correct state while on the search page.
-
-## Important
-The backend API uses a fixed set of cached search results and is limited to a particular set of search terms, which can be found in [SEARCH_TERMS.md](SEARCH_TERMS.md). That list of terms are the _only_ terms that will work with the backend, so don't be surprised if your searches for Basket Weaving or Bubble Wrap don't come back with any results.
-
-## Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app). You can find more information on how to perform common tasks [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
-
-## Contributing
-
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
-
-For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
+## AVISO
+A API está fazendo buscas no meu perfil do instagram.
+Só as tags 'hellosquid', 'dog', 'natal' e 'teste' vão retornar resultados.
