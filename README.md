@@ -9,6 +9,7 @@
 * rodar os servidores  `npm run dev`
 
 node/express vai rodar no port 5000
+
 react vai rodar no port 3000
 
 se vocês quiserem usar a versão estática do React é preciso dar build antes.
@@ -24,7 +25,7 @@ Para configurar é só:
 
 ## TESTES
 
-`npm run test-api` para testa a API (mocha + chai)
+`npm run test-api` para testar a API (mocha + chai)
 
 ## AVISO
 A API está fazendo buscas no meu perfil do instagram.
