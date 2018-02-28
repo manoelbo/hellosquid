@@ -3,6 +3,8 @@ var gracefulShutdown;
 var dbURI = 'mongodb://localhost/hellosquid';
 if (process.env.NODE_ENV === 'production') {
     dbURI = process.env.MONGOLAB_URI;
+} else if (process.env.NODE_ENV === 'test') {
+    dbURI = 'mongodb://localhost/hellosquid-teste'
 }
 
 mongoose.connect(dbURI);

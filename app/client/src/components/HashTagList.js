@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
 class HashTagList extends Component {
-
     onHashtagSelect(selectedHashtag) {
         this.props.updateSelectedHashTag(selectedHashtag);
     }
@@ -11,8 +10,8 @@ class HashTagList extends Component {
     }
 
     changeSlectedStyle(hashtag) {
-        if(hashtag === this.props.selectedHashtag) {
-            return { 'fontWeight': '900', 'textDecoration': 'underline' }
+        if (hashtag === this.props.selectedHashtag) {
+            return { fontWeight: '900', textDecoration: 'underline' };
         }
         return {};
     }
@@ -27,17 +26,25 @@ class HashTagList extends Component {
                             <div
                                 className="chip hoverable"
                                 key={hashtag._id}
-
                                 style={this.changeSlectedStyle(hashtag.hashtag)}
                             >
                                 <span
-                                    style={{'cursor': 'pointer'}}
-                                    onClick={() => this.onHashtagSelect(hashtag.hashtag)}
-                                    > #{hashtag.hashtag} </span>
+                                    style={{ cursor: 'pointer' }}
+                                    onClick={() =>
+                                        this.onHashtagSelect(hashtag.hashtag)
+                                    }
+                                >
+                                    {' '}
+                                    #{hashtag.hashtag}{' '}
+                                </span>
                                 <i
                                     className="close material-icons"
-                                    onClick={() => this.onCloseClick(hashtag._id)}
-                                >close</i>
+                                    onClick={() =>
+                                        this.onCloseClick(hashtag._id)
+                                    }
+                                >
+                                    close
+                                </i>
                             </div>
                         ))}
                     </div>

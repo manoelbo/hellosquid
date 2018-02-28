@@ -9,6 +9,7 @@
   },
   "scripts": {
     "start": "node app/index.js",
+    "test-api": "NODE_ENV=test mocha app/api/test/* --timeout 10000",
     "server": "nodemon app/index.js",
     "client": "npm run start --prefix app/client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
@@ -22,5 +23,10 @@
     "express": "^4.16.2",
     "mongoose": "^5.0.7",
     "request": "^2.83.0"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "chai-http": "^3.0.0",
+    "mocha": "^5.0.1"
   }
 }

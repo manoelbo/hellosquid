@@ -6,7 +6,7 @@ var mongoose = require('mongoose');
 var hashtagSchema = new mongoose.Schema({
     hashtag: {
         type: String,
-        require: true,
+        required: true,
         unique: true
     }
 });

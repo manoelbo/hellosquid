@@ -14,18 +14,11 @@ const sendJSONresponse = (res, status, content) => {
 
 module.exports.getAllHashtags = (req, res) => {
     Hashtag.find({}).exec((err, hashtags) => {
-        if (hashtags.length === 0) {
-            sendJSONresponse(res, 404, {
-                error: 'Hashtags not found'
-            });
-            return;
-        } else if (err) {
-            console.log(err);
+        if (err) {
             sendJSONresponse(res, 404, err);
             return;
         }
 
-        console.log(hashtags, 'hashtags is');
         sendJSONresponse(res, 200, hashtags);
     });
 };
@@ -37,10 +30,8 @@ module.exports.addHashtag = (req, res) => {
 
     Hashtag.create(new_hashtag, (err, hashtag) => {
         if (err) {
-            console.log(err);
             sendJSONresponse(res, 400, err);
         } else {
-            console.log(hashtag);
             sendJSONresponse(res, 201, hashtag);
         }
     });
@@ -51,12 +42,9 @@ module.exports.removeHashtag = (req, res) => {
     if (id) {
         Hashtag.findByIdAndRemove(id).exec((err, hashtag) => {
             if (err) {
-                console.log(err);
                 sendJSONresponse(res, 404, err);
                 return;
             }
-
-            console.log(`Hashtag ${id} deleted`);
             sendJSONresponse(res, 204, {
                 success: `Hashtag ${id} deleted`
             });
